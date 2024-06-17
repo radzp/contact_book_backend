@@ -1,7 +1,6 @@
-package com.amw.contact_book_backend.repo;
+package com.amw.contact_book_backend.contact;
 
 
-import com.amw.contact_book_backend.domain.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

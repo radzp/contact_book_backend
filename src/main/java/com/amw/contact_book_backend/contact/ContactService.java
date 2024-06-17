@@ -1,7 +1,5 @@
-package com.amw.contact_book_backend.service;
+package com.amw.contact_book_backend.contact;
 
-import com.amw.contact_book_backend.domain.Contact;
-import com.amw.contact_book_backend.repo.ContactRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +33,7 @@ public class ContactService {
     }
 
     public Contact getContact(String id) {
-        return contactRepo.findById(id).orElseThrow(()-> new RuntimeException("Contact not found"));
+        return contactRepo.findById(id).orElseThrow(()-> new RuntimeException("contact not found"));
     }
 
     public Contact createContact(Contact contact) {

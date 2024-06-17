@@ -1,7 +1,5 @@
-package com.amw.contact_book_backend.resource;
+package com.amw.contact_book_backend.contact;
 
-import com.amw.contact_book_backend.domain.Contact;
-import com.amw.contact_book_backend.service.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
