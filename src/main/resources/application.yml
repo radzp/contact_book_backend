@@ -1,19 +1,7 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/contactdb
-    username: postgres
-    password: postgres
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLInnoDBDialect
-    generate-ddl: true
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        globally_quoted_identifiers: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/contactdb
   servlet:
     multipart:
       enabled: true

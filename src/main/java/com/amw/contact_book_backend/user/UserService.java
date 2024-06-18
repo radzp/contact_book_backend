@@ -29,11 +29,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(String id) {
         userRepository.deleteById(id);
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public User updateUser(Long id, User user) {
+    public User updateUser(String id, User user) {
         User userToUpdate = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         userToUpdate.setEmail(user.getEmail());
         userToUpdate.setName(user.getName());
@@ -49,8 +49,4 @@ public class UserService implements UserDetailsService {
         userToUpdate.setRole(user.getRole());
         return userRepository.save(userToUpdate);
     }
-
-
 }
-
-

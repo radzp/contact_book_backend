@@ -1,6 +1,5 @@
 package com.amw.contact_book_backend.contact;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,7 +21,6 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Service
 @Slf4j //
-@Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class ContactService {
 
