@@ -33,15 +33,16 @@ public class ContactService {
     }
 
     public Contact getContact(String id) {
-        return contactRepo.findById(id).orElseThrow(()-> new RuntimeException("contact not found"));
+        return contactRepo.findById(id).orElseThrow(() -> new RuntimeException("contact not found"));
     }
 
     public Contact createContact(Contact contact) {
         return contactRepo.save(contact);
     }
 
-    public void deleteContact(Contact contact) {
-        //Assignment
+    public void deleteContact(String id) {
+        Contact contact = contactRepo.findById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
+        contactRepo.delete(contact);
     }
 
 
@@ -54,39 +55,25 @@ public class ContactService {
         return photoUrl;
     }
 
-    // return an Optional, takes filename and filters if it contains a dot ".", cuz we need smth .png or .jpg
-    // if we have a dot we gonna take that name substrate ... we need dot and whatever comes after the dot, we need the second part
-    private final Function<String, String> fileExtension = filename -> Optional.of(filename).filter(name -> name.contains("."))
+    private final Function<String, String> fileExtension = filename ->
+            Optional.of(filename).filter(name -> name.contains("."))
             .map(name -> "." + name.substring(filename.lastIndexOf(".") + 1)).orElse((".png"));
 
 
-
-    // funct method is gonna take a String and MultipartFile and return String
     private final BiFunction<String, MultipartFile, String> photoFunction = (id, image) -> {
         String filename = id + fileExtension.apply(image.getOriginalFilename());
         try {
             Path fileStorageLocation = Paths.get(PHOTO_DIRECTORY).toAbsolutePath().normalize();
-            if(!Files.exists(fileStorageLocation)) {
+            if (!Files.exists(fileStorageLocation)) {
                 Files.createDirectories(fileStorageLocation);
             }
             Files.copy(image.getInputStream(), fileStorageLocation.resolve(filename), REPLACE_EXISTING);
             return ServletUriComponentsBuilder
                     .fromCurrentContextPath()
                     .path("/contacts/image/" + id + fileExtension.apply(image.getOriginalFilename())).toUriString();
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             throw new RuntimeException("Unable to save image");
         }
 
     };
-
-
-
-
-
-
-
-
-
-
-
 }

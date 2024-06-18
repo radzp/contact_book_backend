@@ -16,21 +16,21 @@ public class InitialDatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRepository.findByEmail("admin@admin.com").isEmpty()) {
-            User admin = new User();
-            admin.setName("admin");
-            admin.setPassword(passwordEncoder.encode("admin"));
-            admin.setRole(Role.ADMIN);
-            admin.setEmail("admin@admin.com");
-            userRepository.save(admin);
+        if (userRepository.findByEmail("ania@ania.com").isEmpty()) {
+            User ania = new User();
+            ania.setName("ania");
+            ania.setPassword(passwordEncoder.encode("ania"));
+            ania.setRole(Role.USER);
+            ania.setEmail("ania@ania.com");
+            userRepository.save(ania);
         }
-        if (userRepository.findByEmail("user@user.com").isEmpty()) {
-            User user = new User();
-            user.setName("user");
-            user.setPassword(passwordEncoder.encode("user"));
-            user.setRole(Role.USER);
-            user.setEmail("user@user.com");
-            userRepository.save(user);
+        if (userRepository.findByEmail("marcin@marcin.com").isEmpty()) {
+            User marcin = new User();
+            marcin.setName("marcin");
+            marcin.setPassword(passwordEncoder.encode("marcin"));
+            marcin.setRole(Role.USER);
+            marcin.setEmail("marcin@marcin.com");
+            userRepository.save(marcin);
         }
 
     }

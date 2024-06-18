@@ -37,6 +37,6 @@ public class Contact {
     private String phone;
     @NotNull
     private String address;
-    @NotNull
+    private String status;
     private String photoUrl;
 }
