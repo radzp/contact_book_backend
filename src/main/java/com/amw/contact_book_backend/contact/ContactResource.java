@@ -1,8 +1,10 @@
 package com.amw.contact_book_backend.contact;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +25,7 @@ public class ContactResource {
     private final ContactService contactService;
 
     @PostMapping
-    public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
+    public ResponseEntity<Contact> createContact(@RequestBody @Valid Contact contact) {
         return ResponseEntity.created(URI.create("/contacts/userID")).body(contactService.createContact(contact));
     }
 

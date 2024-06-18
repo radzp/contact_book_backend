@@ -21,16 +21,18 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 public class Contact {
     @Id
     private String id; // primary key
-    @NotNull
+    @NotNull(message = "Name cannot be empty")
     private String name;
+    @NotNull(message = "Email cannot be empty")
     @Email
     private String email;
-    @NotNull
+    @NotNull(message = "Title cannot be empty")
     private String title;
-    @NotNull
+    @NotNull(message = "Phone cannot be empty")
     private String phone;
-    @NotNull
+    @NotNull(message = "Address cannot be empty")
     private String address;
+    @NotNull(message = "Status cannot be empty")
     private String status;
     private String photoUrl;
 }

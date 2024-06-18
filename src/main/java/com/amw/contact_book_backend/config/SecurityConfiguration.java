@@ -1,6 +1,7 @@
 package com.amw.contact_book_backend.config;
 
 import com.amw.contact_book_backend.jwt.JwtAuthenticationFilter;
+import com.amw.contact_book_backend.user.Role;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/logout").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/contacts/**").hasAnyAuthority(Role.USER.name())
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
